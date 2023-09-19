@@ -8,6 +8,10 @@ soup = BeautifulSoup(res.text, 'html.parser')
 links = soup.select('.titleline > a')
 subtext = soup.select('.subtext')
 
+#sort list by votes in descending order
+def sort_stories_by_votes(hnlist):
+    return sorted(hnlist, key= lambda k:k['votes'], reverse=True)
+
 #create function that receives links and votes
 def create_custom_hn(links, subtext):
     hn = []
@@ -22,7 +26,7 @@ def create_custom_hn(links, subtext):
             #only get output with points at last 100
             if points > 99:
                 hn.append({'title': title, 'link': href, 'votes': points})
-    return hn
+    return sort_stories_by_votes(hn)
 
 #make the output neater to read
 pprint.pprint(create_custom_hn(links, subtext))
