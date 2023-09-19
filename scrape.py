@@ -4,9 +4,15 @@ import pprint
 
 #get information from page
 res = requests.get('https://news.ycombinator.com/news')
+res2 = requests.get('https://news.ycombinator.com/news?p=2')
+
 soup = BeautifulSoup(res.text, 'html.parser')
+soup2 = BeautifulSoup(res2.text, 'html.parser')
+
 links = soup.select('.titleline > a')
 subtext = soup.select('.subtext')
+links2 = soup2.select('.titleline > a')
+subtext2 = soup2.select('.subtext')
 
 #sort list by votes in descending order
 def sort_stories_by_votes(hnlist):
