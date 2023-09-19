@@ -14,6 +14,9 @@ subtext = soup.select('.subtext')
 links2 = soup2.select('.titleline > a')
 subtext2 = soup2.select('.subtext')
 
+mega_links = links + links2
+mega_subtext = subtext + subtext2
+
 #sort list by votes in descending order
 def sort_stories_by_votes(hnlist):
     return sorted(hnlist, key= lambda k:k['votes'], reverse=True)
@@ -35,4 +38,4 @@ def create_custom_hn(links, subtext):
     return sort_stories_by_votes(hn)
 
 #make the output neater to read
-pprint.pprint(create_custom_hn(links, subtext))
+pprint.pprint(create_custom_hn(mega_links, mega_subtext))
